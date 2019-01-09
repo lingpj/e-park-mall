@@ -94,7 +94,7 @@ import Cookies from 'js-cookie'
 import { XHeader } from 'vux'
 import { Popup, Tab, XNumber, Badge, TabItem, Sticky, Divider, XButton, } from 'vux'
 import Swiper from 'swiper'
-import getWxParams from '../../utils/wxShare'
+import {getWxParams} from '../../utils/wxShare'
 import { getQueryObject } from '../../utils/index'
 export default {
   name: '',
@@ -164,7 +164,7 @@ export default {
           }
 
           // var shareUrl = window.location.href
-          var shareUrl = 'http://api.parkwing.cn/shop/share?id=' + args.id
+          var shareUrl = process.env.shop_front_api+'/share?id=' + args.id
           // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
           var obj = {
             title: args.title, // 分享标题

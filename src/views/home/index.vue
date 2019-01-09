@@ -55,7 +55,7 @@ import homeFooter from '../../components/homeFooter'
 import { getQueryObject } from '../../utils/index'
 import Cookies from 'js-cookie'
 import store from '../../store'
-import getWxParams from '../../utils/wxShare'
+import {getWxParams} from '../../utils/wxShare'
 export default {
   name: '',
   components: {
@@ -104,7 +104,7 @@ export default {
           });
           wx.ready(function() {
             
-            var shareUrl ='http://api.parkwing.cn/shop/share/wx7fe0551f01ffb35b?id=index' 
+            var shareUrl =process.env.shop_front_api+'/share/?id=index' 
             var obj = {
               title: '我给你分享了绝妙的商品哦，赶紧来看看吧!', // 分享标题
               desc: '不一样的服务商城，应有尽有的贴⼼心服务!', // 分享描述

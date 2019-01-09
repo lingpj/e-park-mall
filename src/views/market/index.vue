@@ -27,7 +27,7 @@
 import { Spinner, Divider } from 'vux'
 import homeHeader from '../../components/homeHeader'
 import homeFooter from '../../components/homeFooter'
-import getWxParams from '../../utils/wxShare'
+import {getWxParams} from '../../utils/wxShare'
 export default {
   name: '',
   components: {
@@ -68,7 +68,7 @@ export default {
             'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表
         });
         wx.ready(function() {
-          var shareUrl ='http://api.parkwing.cn/shop/share?id=id'
+          var shareUrl =process.env.shop_front_api+'/share?id=id'
           // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
           var obj = {
             title: '赶紧来看看我给你分享的宝贝们吧！', // 分享标题

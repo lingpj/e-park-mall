@@ -13,7 +13,7 @@
 
 <script>
 import { InlineCalendar, Selector } from 'vux'
-import getWxParams from '../../utils/wxShare'
+import {getWxParams} from '../../utils/wxShare'
 export default {
     name: '',
     components: { InlineCalendar, Selector },
@@ -80,7 +80,7 @@ export default {
                         'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表
                 });
                 wx.ready(function() {
-                    var shareUrl = 'http://api.parkwing.cn/shop/#/canlender'
+                    var shareUrl = process.env.shop_front_api+'/#/canlender'
                     // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
                     var obj = {
                         title: '会议室预定', // 分享标题

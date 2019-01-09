@@ -1,4 +1,4 @@
-export default function (self) {
+export function getWxParams(self) {
         return new Promise(function (resolve, reject) {
             if (sessionStorage.getItem('appId') && (sessionStorage.getItem('appId') != '')) {
                 resolve({
@@ -30,3 +30,4 @@ export default function (self) {
 
         })
     }
+    
