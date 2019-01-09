@@ -164,7 +164,7 @@ export default {
           }
 
           // var shareUrl = window.location.href
-          var shareUrl = 'http://yyxx.parkwing.cn/shop/share?id=' + args.id
+          var shareUrl = 'http://api.parkwing.cn/shop/share?id=' + args.id
           // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
           var obj = {
             title: args.title, // 分享标题

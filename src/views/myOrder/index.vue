@@ -32,7 +32,7 @@
                 共{{item.goodsInfo.length}}件商品 小计:
                 <span>
                     <em style="font-size:12px">￥</em>
-                    <b>{{item.goodsInfo | getOrderSumMoney}}</b>
+                    <b>{{item.goodsInfo | getOrderSumMoney | formatPrice}}</b>
                 </span>
             </div>
             <div class="utils">
@@ -173,17 +173,23 @@ export default {
         // 去付款
         payOrderHandle: function(item) {
             // this.$router.push('/payResult')
-            this.goWxPay(item.orderId)
+            // console.log(item,this.)
+            var money = item.goodsInfo.map(function(element) {
+                return parseFloat(element.currentPrice) * parseFloat(element.goodsNum)
+            }).reduce(o =>{
+                return o
+            });
+            console.log(money)
+            this.goWxPay(item.orderId,money.toFixed(2)*100)
         },
         // 微信支付
-        goWxPay: function(orderId) {
-
+        goWxPay: function(orderId,money) {
             this.$fetch({
-                url: 'https://wechatpaycallbackuat.parkwing.cn/payment/weixinPay/unifiedorder',
+                url: 'https://wechatpaycallback.parkwing.cn/payment/weixinPay/unifiedorder',
                 method: 'post',
                 data: {
                     body: '商城支付',
-                    total_fee: 1,
+                    total_fee: money,
                     openid: sessionStorage.getItem('openId'),
                     out_trade_no: orderId
                 }

@@ -43,7 +43,7 @@
       共{{goodList.length}}件商品 小计:
       <span>
         <em style="font-size:12px">￥</em>
-        <b>{{orderAmt}}</b>
+        <b>{{orderAmt | formatPrice}}</b>
       </span>
     </div>
     <!--底部按钮  -->
@@ -51,7 +51,7 @@
       <div class="priceSum">
         <div>
           应付：
-          <span>¥ {{orderAmt}}</span>
+          <span>¥ {{orderAmt | formatPrice}}</span>
         </div>
       </div>
       <div class="goPay" @click="buyNowHandle">去支付</div>
@@ -155,6 +155,7 @@ export default {
     }
   },
   mounted() {
+    
     console.log(JSON.parse(sessionStorage.getItem('clickedGoodsByGoodsDetail')))
     // clickedGoodsByGoodsDetail
     // 从storage中取出当前的商品
@@ -168,6 +169,7 @@ export default {
 
   methods: {
     onBridgeReady: function(params) {
+
       var self = this
       WeixinJSBridge.invoke(
         'getBrandWCPayRequest', {
@@ -179,6 +181,7 @@ export default {
           "paySign": params.paySign //微信签名 
         },
         function(res) {
+         
 
           if (res.err_msg == "get_brand_wcpay_request:ok") {
             self.$router.push('/payResult')
@@ -275,7 +278,7 @@ export default {
     },
     // 下单
     addOrder: function() {
-
+      // alert('准备调用下单接口')
       this.$fetch({
         url: process.env.shop_front_api + '/order/doAnOrder',
         method: 'post',
@@ -290,10 +293,10 @@ export default {
             }
           }),
           openId: sessionStorage.getItem('openId'),
-          userPhone: this.finalAddressInfo.phone,
-          userAddr: this.finalAddressInfo.address,
-          userName: this.finalAddressInfo.buyerName,
-          userNotes: this.$refs.userNotes.$refs.input.value,
+          userPhone: this.finalAddressInfo.phone.trim(),
+          userAddr: this.finalAddressInfo.address.trim(),
+          userName: this.finalAddressInfo.buyerName.trim(),
+          userNotes: this.$refs.userNotes.$refs.input.value.trim(),
           deliveryWay: '',
           deliveryTime: '',
           deliveryAddr: '',
@@ -302,11 +305,12 @@ export default {
           parkName: this.finalAddressInfo.parkName,
         }
       }).then((res) => {
-
+        // alert(res)
+        // alert(JSON.stringify(res))
         if (res.code == 200) {
           this.$vux.toast.text(res.message, 'middle')
           setTimeout(function() {
-            this.goWxPay(res.orderId)
+            this.goWxPay(res.orderId,this.orderAmt*100)
           }.bind(this), 1000);
         } else {
           this.$vux.toast.text(res.msg, 'middle')
@@ -316,19 +320,19 @@ export default {
       })
     },
     // 下单
-    goWxPay: function(orderId) {
+    goWxPay: function(orderId,money) {
 
       this.$fetch({
-        url: 'https://wechatpaycallbackuat.parkwing.cn/payment/weixinPay/unifiedorder',
+        url: 'https://wechatpaycallback.parkwing.cn/payment/weixinPay/unifiedorder',
         method: 'post',
         data: {
           body: '商城支付',
-          total_fee: 1,
+          total_fee: money,
           openid: sessionStorage.getItem('openId'),
           out_trade_no: orderId
         }
       }).then((res) => {
-
+        // alert('下单：'+JSON.stringify(res))
         this.onBridgeReady({
           "appId": res.appId,     //公众号名称，由商户传入     
           "timeStamp": res.timeStamp,         //时间戳，自1970年以来的秒数     

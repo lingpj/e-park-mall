@@ -14,7 +14,10 @@ export function timeAgo(time) {
     return pluralize(~~(between / 86400), ' day')
   }
 }
-
+// 格式化价格
+export function formatPrice(money) {
+  return parseFloat(money).toFixed(2)
+}
 export function parseTime(time, cFormat) {
   if (arguments.length === 0) {
     return null;

@@ -50,7 +50,7 @@
                 共{{dataObj.goodsInfo.length}}件商品 小计:
                 <span>
                     <em style="font-size:12px">￥</em>
-                     <b>{{dataObj.goodsInfo | getOrderSumMoney}}</b> 
+                     <b>{{dataObj.goodsInfo | getOrderSumMoney | formatPrice}}</b> 
                 </span>
             </div>
         </div>

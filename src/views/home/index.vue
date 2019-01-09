@@ -103,7 +103,8 @@ export default {
               'onMenuShareAppMessage'] // 必填，需要使用的JS接口列表
           });
           wx.ready(function() {
-            var shareUrl ='http://yyxx.parkwing.cn/shop/share?id=index' 
+            
+            var shareUrl ='http://api.parkwing.cn/shop/share?id=index' 
             var obj = {
               title: '我给你分享了绝妙的商品哦，赶紧来看看吧!', // 分享标题
               desc: '不一样的服务商城，应有尽有的贴⼼心服务!', // 分享描述
