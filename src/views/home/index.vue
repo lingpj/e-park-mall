@@ -82,6 +82,7 @@ export default {
         openId = 'qwer'
       }
     }
+    
     sessionStorage.setItem('openId', openId)
     Cookies.set('openId', openId)
     this.getGoodsList()
@@ -93,6 +94,7 @@ export default {
     initWxConfig: function() {
       
       getWxParams(this).then(function(data) {
+        // alert('getWxParams >> '+JSON.stringify(data))
           wx.config({
             debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
             appId: data.appId, // 必填，公众号的唯一标识
@@ -104,7 +106,7 @@ export default {
           });
           wx.ready(function() {
             
-            var shareUrl =process.env.shop_front_api+'/share/?id=index' 
+            var shareUrl =process.env.shop_front_api+'/share/'+data.appId+'?id=index' 
             var obj = {
               title: '我给你分享了绝妙的商品哦，赶紧来看看吧!', // 分享标题
               desc: '不一样的服务商城，应有尽有的贴⼼心服务!', // 分享描述

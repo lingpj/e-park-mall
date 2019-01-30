@@ -323,7 +323,8 @@ export default {
     goWxPay: function(orderId,money) {
 
       this.$fetch({
-        url: 'https://wechatpaycallback.parkwing.cn/payment/weixinPay/unifiedorder',
+        // 
+        url: 'https://wechatpaycallback.parkwing.cn/payment/weixinPay/unifiedorder/'+sessionStorage.getItem('appId'),
         method: 'post',
         data: {
           body: '商城支付',

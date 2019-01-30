@@ -25,6 +25,13 @@ module.exports = {
           '^/bs': ''
         }
       },
+      '/pay_bs': {
+        target: 'http://192.168.100.79:9011',  //鲍晟
+        changeOrigin: true,
+        pathRewrite: {
+          '^/pay_bs': ''
+        }
+      },
       // 
       '/on': {
         target: 'http://dropdbandescape.parkwing.cn/shop/',  //线上

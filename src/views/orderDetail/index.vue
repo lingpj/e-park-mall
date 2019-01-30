@@ -89,7 +89,7 @@ export default {
     components: { XInput, PopupPicker, XNumber, Badge, Countdown, XHeader, Tab, TabItem, Sticky, Divider, XButton, Swiper, SwiperItem },
     data() {
         return {
-            title1: '订单详情',
+            title1: '',
             dataObj: {},
             status: ['待付款', '待发货', '已发货', '已完成', '已关闭'],
             goodsList: [],

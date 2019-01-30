@@ -148,7 +148,7 @@ export default {
       var self = this
 
       getWxParams(this).then(function(data) {
-
+        // alert('getWxParams >> '+JSON.stringify(data))
         wx.config({
           debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
           appId: data.appId, // 必填，公众号的唯一标识
@@ -164,7 +164,7 @@ export default {
           }
 
           // var shareUrl = window.location.href
-          var shareUrl = process.env.shop_front_api+'/share?id=' + args.id
+          var shareUrl = process.env.shop_front_api+'/share/'+data.appId+'?id=' + args.id
           // 2.2 监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
           var obj = {
             title: args.title, // 分享标题

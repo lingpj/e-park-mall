@@ -43,7 +43,7 @@ export default {
     components: { Confirm, XInput, PopupPicker, XNumber, Badge, Countdown, XHeader, Tab, TabItem, Sticky, Divider, XButton, Swiper, SwiperItem },
     data() {
         return {
-            title1: '付款结果',
+            title1: '',
         }
     },
 
