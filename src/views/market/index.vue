@@ -134,7 +134,7 @@ h1 {
     color: #888;
   }
   .divider {
-    margin-top: 15px;
+    margin: 15px 0;
   }
   &>div {
     padding: 10px 15px;
